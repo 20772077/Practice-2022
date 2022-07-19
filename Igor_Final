@@ -1,0 +1,90 @@
+from PyQt5.QtGui import QIcon, QPixmap, QFont
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QTextEdit, QVBoxLayout
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
+
+class MainWindow(QMainWindow):
+    
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        
+        self.resize(1024,600)#изменение окна самой программы
+        self.new_text = QtWidgets.QLabel(self)
+        self.label = QtWidgets.QLabel(self)#это для "введите данные"
+        self.btn = QtWidgets.QPushButton(self)#кнопка для перевода даты
+        self.btn2 = QtWidgets.QPushButton(self)#кнопка для перевода даты
+        self.input_y = QtWidgets.QLineEdit(self)#поле для ввода информации
+        self.input_m = QtWidgets.QLineEdit(self)#поле для ввода информации
+        self.input_d = QtWidgets.QLineEdit(self)#поле для ввода информации        
+    
+        self.output = QTextEdit(self)  
+        self.UI(self)
+        
+        
+        
+    def UI(self, Window):
+        
+        self.setWindowTitle("Форматы даты")
+        self.setGeometry(100, 100, 100, 100)
+        self.resize(1024,600)
+
+        self.label.setText("Введите \n данные")
+        self.label.move(25, 282)
+
+        self.btn.move(410, 272)
+        self.btn.setText("Американский формат")
+        self.btn.setFixedWidth(200)
+        self.btn.clicked.connect(self.resultataAM)
+        
+        self.btn2.move(410, 332)
+        self.btn2.setText("Европейский формат")
+        self.btn2.setFixedWidth(200)
+        self.btn2.clicked.connect(self.resultataEU)#соединение
+
+        self.input_y.move(100, 272)
+        self.input_y.resize(300,30)
+        self.input_y.setPlaceholderText("Год")
+
+        self.input_m.move(100, 302)
+        self.input_m.resize(300,30)
+        self.input_m.setPlaceholderText("Месяц")
+
+        self.input_d.move(100, 332)
+        self.input_d.resize(300,30)
+        self.input_d.setPlaceholderText("День")
+
+        
+        self.output.move(620, 272)
+        self.output.resize(300,90)
+        self.output.setAlignment(QtCore.Qt.AlignCenter)#выравнивание
+
+    def resultataAM(self):
+        self.output.clear()
+        self.output.setAlignment(QtCore.Qt.AlignCenter)
+        self.output.setFontPointSize(32)#изменение размера шрифта
+        
+        self.new_text.setText("Американский формат даты(mm, dd, y)")
+        self.new_text.move(620, 250)
+        self.new_text.adjustSize()
+        #Женин код будет находиться тут
+        
+    def resultataEU(self):
+        self.output.clear()#очистка окна output (самое правое окно)
+        self.output.setAlignment(QtCore.Qt.AlignCenter)
+        self.output.setFontPointSize(32)
+        
+        self.new_text.setText("Европейский формат даты(dd, mm, y)")
+        self.new_text.move(620, 250)
+        self.new_text.adjustSize()
+        #Женин код будет находиться тут
+
+
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    w = MainWindow()
+    w.show()
+    sys.exit(app.exec_())

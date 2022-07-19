@@ -1,0 +1,54 @@
+#Создание набросоков внешнего вида
+#Само поле и идеи кнопок
+from PyQt5.QtGui import QIcon, QPixmap, QFont
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QTextEdit, QVBoxLayout
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
+
+class Window2(QWidget):
+    
+    def __init__(self):
+        super(Window2, self).__init__()
+        self.setWindowTitle('Справочная информация')
+
+class MainWindow(QMainWindow):
+    
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        
+        self.resize(1024,600)
+        self.new_text = QtWidgets.QLabel(self)
+        self.label = QtWidgets.QLabel(self)
+        self.btn = QtWidgets.QPushButton(self)
+        self.btn2 = QtWidgets.QPushButton(self)
+        self.input_y = QtWidgets.QLineEdit(self)
+        self.input_m = QtWidgets.QLineEdit(self)
+        self.input_d = QtWidgets.QLineEdit(self)        
+    
+        self.output = QTextEdit(self)  
+        self.UI(self)
+        
+    def UI(self, Window):
+        
+        self.setWindowTitle("Форматы даты")
+        self.setGeometry(100, 100, 100, 100)
+        self.resize(1024,600)
+     
+    def show_window_2(self):
+        self.w2 = Window2()
+        self.w2.show()
+
+    def resultataAM(self):
+        pass
+        
+    def resultataEU(self):
+        pass
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    w = MainWindow()
+    w.show()
+    sys.exit(app.exec_())
